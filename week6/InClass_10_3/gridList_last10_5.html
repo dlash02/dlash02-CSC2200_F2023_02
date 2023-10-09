@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF8">
+    <title>Title</title>
+    <style>
+        #form {
+            display: grid;
+            padding: 1em;
+            background: #f9f9f9;
+            border: 1px solid #c1c1c1;
+            margin: 2rem auto 0 auto;
+            max-width: 600px;
+            padding: 1em;
+        }
+        form input {
+            background: #fff;
+            border: 1px solid #9c9c9c;
+        }
+        form button {
+            background: lightgrey;
+            padding: 0.7em;
+            width: 100%;
+            border: 0;
+        }
+        form button:hover {
+            background: gold;
+        }
+        label {
+            padding: 0.5em 0.5em 0.5em 0;
+        }
+        input {
+            padding: 0.7em;
+            margin-bottom: 0.5rem;
+        }
+        input:focus {
+            outline: 3px solid gold;
+        }
+        @media (min-width: 400px) {
+            form {
+                grid-template-columns: 200px 1fr;
+                grid-gap: 16px;
+            }
+            label {
+                text-align: right;
+                grid-column: 1 / 2;
+            }
+            #results {
+                font-size: 20px;
+                grid-column: 2 / 3;
+            }
+            input, button, #results {
+                grid-column: 2 / 3;
+                position: relative;
+                top: 5px;
+
+            }
+            #header {
+                font-size: 25px;
+                grid-column: 2 / 3;
+            }
+        }
+    </style>
+    <script>
+
+        function looper1() {
+            let inC = parseInt(document.getElementById("inCount").value);
+            let res = "<ul>";
+            alert( inC )
+            // for( let i=0; i<inC; i++){
+            let i = 0;
+                while( i++ < inC ){
+                res += `<li> ${i} bottles of something on the wall </li>`
+                alert( i )
+            }
+            res += "</ul>";
+
+            document.getElementById("results").innerHTML = res;
+        }
+    </script>
+</head>
+<body>
+<span id="form">
+     <span id="header"> Guess The Word!</span>
+     <label for="inCount" >How Many:</label>
+     <input id="inCount" type="text">
+     <button type='button' onClick="looper1()">Submit</button>
+    <br />
+    <label for="results" class="Results">Results:</label>
+    <span id="results"> results</span>
+</span>
+</body></html>

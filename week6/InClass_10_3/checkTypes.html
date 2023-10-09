@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checking types</title>
+    <script>
+      let x = [ 5, 4, 3, 2, "Beanhead"];
+      x="blah"
+      x = x / 2;
+      console.log(x);
+      checkType(x);
+       function checkType( n ){
+         let msg = `Input var is type ${ typeof n }`
+         console.log( msg );
+         console.log( typeof  n);
+       }
+    </script>
+</head>
+<body>
+  <h2> Hello there </h2>
+
+</body>
+</html>
