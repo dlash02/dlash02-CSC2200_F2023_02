@@ -13,6 +13,24 @@ let del = [];  // Added
 del['Pick-Up'] = 1.0;  // Added
 del['In-Store'] = 0;  // Added
 del['Delivery'] = 5.00;  // Added
+const MAX_CHARS = 10;
+function onLoadWork() {
+    let maxMsg = document.getElementById("maxMSg");
+    maxMsg.innerText = `(Max Chars:${MAX_CHARS})`;
+}
+function countChars() {
+    let comments = document.getElementById("comments");
+    let  chCt = document.getElementById("charCt");
+    let textB = comments.value;
+
+    if (textB.length > MAX_CHARS ) {
+        comments.value = textB.substring(0, MAX_CHARS);
+        chCt.innerText = `${MAX_CHARS}`;
+
+    } else {
+        chCt.innerText = textB.length;
+    }
+}
 function calcTotal() {
     alert("validate!");
     let  pSize = document.querySelector('input[type=radio][name=pSize]:checked').value;

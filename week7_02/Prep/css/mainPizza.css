@@ -6,6 +6,7 @@ body {
     display: grid;
     padding: 1em;
     background: #f9f9f9;
+    background-color: yellow;
     border: 1px solid #c1c1c1;
     margin: 2rem auto 0 auto;
     max-width: 600px;
