@@ -9,8 +9,7 @@ body {
     background-color: yellow;
     border: 1px solid #c1c1c1;
     margin: 2rem auto 0 auto;
-    max-width: 600px;
-    padding: 1em;
+    max-width: 800px;
 }
 #form input {
     background: #fff;
@@ -43,6 +42,9 @@ input:focus {
 .formElem {
     padding-top: 15px;
 
+}
+#charCt {
+     margin-text: 15px;
 }
 @media (min-width: 800px) {
     #form {
