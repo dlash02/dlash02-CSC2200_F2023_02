@@ -65,6 +65,5 @@ function getCheckBoxesTotals(topObj) {
             total  +=  tops[v];
         }
     }
-
     return total;
 }
