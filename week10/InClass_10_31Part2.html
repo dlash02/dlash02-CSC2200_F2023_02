@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const superHero = {
+           name : 'Hulk',
+           age : 145,
+           powers : ["Strong", 'jumps good', 'smashes', 'anger'],
+            secretName : {
+                   last: "Banner",
+                   first: "Bruce",
+                   occupations : [ 'Scientist', 'Nothing']
+            }
+        }
+        function doObject() {
+            let res = document.getElementById("results");
+            let oStr = `name:${superHero.name}`;
+                oStr += `Power1:${superHero.powers[0]}`;
+                oStr += `<br> oocupation1:${superHero.secretName.occupations[0]}`;
+                let occ = superHero.secretName.occupations;
+                oStr += `<br /> oocupation12:${occ[1]}`;
+                oStr += "<ol>";
+                // console.log(superHero );
+                superHero.powers.push("Yells");
+                for( let i=0; i<superHero.powers.length; i++ ){
+                    oStr += `<li> ${superHero.powers[i]} </li>`
+                }
+                oStr += "</ol>";
+                res.innerHTML = oStr;
+        }
+
+    </script>
+</head>
+<body onLoad="doObject();">
+    <h2> Welcome Human to my Site</h2>
+    <div id="results"> </div>
+</body>
+</html>

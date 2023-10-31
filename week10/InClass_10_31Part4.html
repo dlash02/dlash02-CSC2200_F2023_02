@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function superHero( name, powers, age){
+            this.name = name;
+            this.powers = powers;
+            this.age = age;
+            this.greeting = function ( color ){
+                alert( `I am ${this.name} I have ${this.powers.length} powers and I Like ${color}`)
+            }
+        }
+
+        function doObject() {
+            let res = document.getElementById("results");
+            let hulk = new superHero( "Hulk", ["jumps", "yells"], 145);
+            hulk.greeting("Blue");
+            let powers = ["webs", "crawls", "sense"];
+            let spider = new superHero( "Siperman", powers, 17);
+            spider.greeting("Blue");
+            let supers = [ hulk, spider];
+            alert( `supers name1:${supers[1].name} )}`)
+
+
+            res.innerHTML = oStr;
+        }
+
+    </script>
+</head>
+<body onLoad="doObject();">
+    <h2> Welcome Human to my Site</h2>
+    <div id="results"> </div>
+</body>
+</html>

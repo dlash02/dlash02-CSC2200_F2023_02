@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const superHeros = [
+            {
+                name: 'Hulk',
+                age: 145,
+                powers: ["Strong", 'jumps good', 'smashes', 'anger'],
+                secretName: {
+                    last: "Banner",
+                    first: "Bruce",
+                    occupations: ['Scientist', 'Nothing']
+                }
+            },
+            {
+                name: 'Spiderman',
+                age: 17,
+                powers: ["Strong", 'Webs', 'Spider Sense'],
+                secretName: {
+                    last: "Parker",
+                    first: "Peter",
+                    occupations: ['Scientist', 'Student']
+                }
+            }
+        ]
+        function doObject() {
+            let res = document.getElementById("results");
+            let oStr = "";
+            for ( let i=0; i<superHeros.length; i++){
+                if ( superHeros[i].name == "Spiderman"){
+                    oStr += `name:${superHeros[i].name}`
+                    oStr += `<br > last:${superHeros[i].secretName.last}`
+                    oStr += "<ol>";
+                    let heroPowers = superHeros[i].powers;
+                    for( let j=0; j<heroPowers.length; j++ ){
+                        oStr += `<li> ${heroPowers[j]} </li>`
+                    }
+                    oStr += "</ol>";
+                }
+            }
+            if ( oStr == ""){
+                oStr = "Could not find spidey";
+            }
+            res.innerHTML = oStr;
+        }
+
+    </script>
+</head>
+<body onLoad="doObject();">
+    <h2> Welcome Human to my Site</h2>
+    <div id="results"> </div>
+</body>
+</html>

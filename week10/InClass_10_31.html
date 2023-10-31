@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function doObject() {
+            let human = {};
+            human.name = "George";
+            human.last = "Jetson";
+            human.age = 33;
+            let human2 = {
+                name: "George",
+                last: "Jetson"
+            }
+            let res = document.getElementById("results");
+            // res.innerHTML = `Name:${human['name']}`;
+            // res.innerHTML = `Name:${human.name}`;
+            let uInput = prompt("Enter a valid human property->");
+            if ( human.hasOwnProperty(uInput)){
+                let oStr ="Yes we have proper=" + uInput;
+                 oStr += " and its value is:" + human[uInput];
+                res.innerHTML= oStr;
+            } else {
+                res.innerHTML="no have proper=" + uInput;
+
+            }
+
+
+        }
+
+    </script>
+</head>
+<body onLoad="doObject();">
+    <h2> Welcome Human to my Site</h2>
+    <div id="results"> </div>
+</body>
+</html>
