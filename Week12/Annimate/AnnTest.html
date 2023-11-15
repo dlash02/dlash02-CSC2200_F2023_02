@@ -1,0 +1,48 @@
+<!Doctype html>
+<html>
+<style>
+  #container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    background: yellow;
+  }
+  #animate {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background: red;
+  }
+</style>
+<script>
+  let id = null;
+  function moveIt() {
+    let elem = document.getElementById('animate');
+    let pos = 0;
+    clearInterval( id );
+    id  = setInterval( moveHandler, 10);
+    let direction = 'D';
+    function moveHandler(){
+      if ( direction == 'D') pos++
+      else pos--;
+
+      // if ( pos >= 350 ){
+      //   direction = 'U';
+      // }
+      if ( pos <= 0 ){
+        direction = 'D';
+      }
+      elem.style.top = pos + 'px';
+    }
+  }
+</script>
+<body>
+
+<h2>My First JavaScript Animation</h2>
+
+<div id="container">
+  <div id="animate"></div>
+</div>
+<button type="button" onClick="moveIt()"> Click to Start </button>
+</body>
+</html>

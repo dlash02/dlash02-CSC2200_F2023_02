@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buggy Code</title>
+</head>
+<body>
+
+<label for="numberInput">Enter a number:</label>
+<input type="text" id="numberInput" placeholder="Enter a number">
+
+<button onclick="calculateFactorial()">Calculate Factorial</button>
+
+<div id="output"></div>
+
+<script>
+  // //
+  // Intentional Bugs:
+  //         Incorrect Initialization of Result:
+  //
+  //         The result is incorrectly initialized to 0.
+  // Incorrect Loop Condition:
+  //
+  //         The loop condition is incorrectly set to i >= 1 instead of i > 1.
+  // Incorrect Calculation in Loop:
+  //
+  // The factorial is incorrectly calculated using result += i instead of result *= i.
+  //         Feel free to run this code and debug the introduced issues. The goal is to correct these bugs
+  // and make the program accurately calculate and display the factorial of the entered number.
+  function calculateFactorial() {
+    // Get input value from the text box
+    let userInput = document.getElementById("numberInput").value;
+
+    // Convert the input to a number
+    let numberToFactorialize = parseInt(userInput);
+
+    // Introduce a bug: Incorrect initialization of result
+    let result = 0;
+
+    // Introduce a bug: Incorrect loop condition
+    for (let i = numberToFactorialize; i >= 1; i--) {
+      // Introduce a bug: Incorrect calculation of factorial
+      result += i;
+    }
+
+    // Display the result
+    document.getElementById("output").innerText = `The factorial of ${numberToFactorialize} is ${result}`;
+  }
+</script>
+
+</body>
+</html>
+

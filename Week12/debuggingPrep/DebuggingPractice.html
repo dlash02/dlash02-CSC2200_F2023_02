@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buggy Code</title>
+
+  <style>
+    /* Add a border to the table */
+    #cartTable {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    /* Style for table header cells */
+    #cartTable th {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    /* Style for table cells */
+    #cartTable td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+<table id="cartTable">
+  <thead>
+  <tr>
+    <th>Item</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+  </tr>
+  </thead>
+  <tbody></tbody>
+  <tfoot>
+  <tr>
+    <td colspan="3">Total</td>
+    <td id="total"></td>
+
+  </tr>
+  <tr>
+    <td colspan="3">Average</td>
+    <td id="average"></td>
+  </tr>
+  </tfoot>
+</table>
+
+<script>
+  let shoppingCart = {
+    total : 0,
+    average : 0,
+    items: [
+      { name: "Item 1", price: 19.99, quantity: 2 },
+      { name: "Item 2", price: 29.99, quantity: 1 },
+      { name: "Item 3", price: 9.99, quantity: 3 }
+    ],
+    calculateTotal: function () {
+      let total = 0;
+      this.items.forEach(function (item) {
+        total += item.price * item.quantity;
+      });
+      // Introduce a bug: Set total as a string
+      this.total = total.toFixed(2);
+      console.log(`total:${total}`);
+    },
+    calculateAverage: function () {
+      debugger;
+       this.average = this.total / this.items.length;
+    },
+    displayInfo: function () {
+      let tbody = document.querySelector("#cartTable tbody");
+      let totalCell = document.getElementById("total");
+      let averCell = document.getElementById("average");
+
+      // Introduce a bug: Incorrectly setting innerHTML for totalCell
+      totalCell.innerHTML =   this.total;
+      averCell.innerHTML =  this.average;
+
+      // Introduce a bug: Using 'item.price' instead of 'item.quantity'
+      this.items.forEach(function (item) {
+        let row = tbody.insertRow();
+        row.insertCell(0).textContent = item.name;
+        row.insertCell(1).textContent = `$${item.price.toFixed(2)}`;
+        row.insertCell(2).textContent = item.price;
+        row.insertCell(3).textContent = `$${(item.price * item.quantity).toFixed(2)}`;
+      });
+    },
+  };
+
+  function calculateAndDisplay() {
+    shoppingCart.calculateTotal();
+    shoppingCart.displayInfo(  );
+  }
+</script>
+
+<button onclick="calculateAndDisplay()">Calculate and Display</button>
+
+</body>
+</html>
+
+
+
