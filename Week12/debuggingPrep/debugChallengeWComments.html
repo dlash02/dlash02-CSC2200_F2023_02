@@ -31,17 +31,23 @@
   function calculateFactorial() {
     // Get input value from the text box
     let userInput = document.getElementById("numberInput").value;
+    if ( userInput < 0 ){
+      document.getElementById("output").innerText = `Positive Numbers:${numberToFactorialize} only`;
 
+    }
     // Convert the input to a number
     let numberToFactorialize = parseInt(userInput);
-
+    console.log( `FL1: num=${numberToFactorialize}`)
     // Introduce a bug: Incorrect initialization of result
-    let result = 0;
+    let result = 1;
 
     // Introduce a bug: Incorrect loop condition
     for (let i = numberToFactorialize; i >= 1; i--) {
       // Introduce a bug: Incorrect calculation of factorial
-      result += i;
+
+      result *= i;
+      console.log( `FL2: i=${i} result=${result}`)
+
     }
 
     // Display the result
