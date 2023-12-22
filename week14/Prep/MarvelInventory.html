@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/promiseMain.css" rel="stylesheet" />
+    <link href="css/tableStyles.css" rel="stylesheet" />
+  <style>
+    .navbar-custom {
+      background-color: #98bf21;
+      height: 120px;
+    }
+    .nav-link {
+      color:blue !important
+    }
+  </style>
+  <script>
+      let URL = "http://localhost:8000/parts";
+
+      function addSelectItems() {
+      let items = document.getElementById("items").value;
+      fetch(URL)
+               .then( res => res.json())
+              .then(  function (data) {
+                if ( data  == undefined ){
+                    oStr = `<span style=color:red>No Data found for URL:${URL}</span>`;
+                    document.getElementById("results").innerHTML =  oStr;
+                } else {
+                    addSelectOptions( data );
+                }
+              })
+              .catch(function (err) {
+                let oStr = `Something went wrong! Err:${err}`;
+                  document.getElementById("results").innerHTML =  oStr;
+              });
+    }
+    function addSelectOptions( data ){
+        const selOpj = document.getElementById("items");
+        let first = true;
+        let selected = "selected"
+        for( let i=0; i<data.length; i++ ) {
+            if ( first ) {
+                first = false;
+            } else selected = "";
+            const newOption = document.createElement("option");
+            let p = data[i].id;
+            newOption.innerHTML = `<option ${selected} value=${p}> ${p} </option>`
+            selOpj.appendChild(newOption);
+        }
+    }
+    function showSelectedItem() {
+        let item = document.getElementById("items").value;
+        let partURL = `${URL}/${item}`;
+        console.log(`item:${item}`)
+        fetch(partURL)
+            .then( res => res.json())
+            .then(  function (data) {
+                if ( data  == undefined ){
+                    oStr = `<span style=color:red>Error2: No Data found for URL:${URL}</span>`;
+                    document.getElementById("results").innerHTML =  oStr;
+                } else {
+                    showItem( data );
+                }
+            })
+            .catch(function (err) {
+                let oStr = `Something went wrong! Err:${err}`;
+                document.getElementById("results").innerHTML =  oStr;
+            });
+    }
+      function showItem( data ) {
+          // console.log(`data:${data}`, data);
+          let resObj = document.getElementById("results");
+          let inHTML = "<br /> <table>"
+          inHTML += "<tr><th> Id</th><th> Part Name</th>"
+          inHTML += "<th> Quality </th><th> Manufacturer</th>"
+          inHTML += "<th> Location </th>"
+          inHTML += "<th> Suppliers </th>"
+          inHTML += "</tr>"
+          inHTML += `<tr><td> ${data.id}</td>`
+          inHTML += `<td> ${data.partName}</td>`;
+          inHTML += `<td> ${data.quantity}</td>`;
+          inHTML += `<td> ${data.manufacturer}</td>`;
+          inHTML += `<td> ${data.location}</td>`;
+          inHTML += `<td> ${data.suppliers.toString()}</td>`;
+          inHTML += `</tr> </table>`;
+          resObj.innerHTML = inHTML;
+
+      }
+  </script>
+</head>
+<body onLoad="addSelectItems();">
+<div id="mainContainer">
+<header>
+    Nav Area
+</header>
+<div class="mainLeft">
+</div>
+<div class="mainRight">
+        <h2> Enter Part Number </h2>
+        <form>
+            <label>Part: </label>
+            <select id="items">
+
+            </select>
+            <button type="button" onClick="showSelectedItem()" /> Show Item </button>
+        </form>
+           <span id="results"> results here</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

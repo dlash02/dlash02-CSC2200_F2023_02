@@ -5,8 +5,8 @@
     <title>To Do List from Fetch</title>
   <link href="css/tableStyles.css" rel="stylesheet" />
   <script>
-    function loadTasks( id ) {
-      let url = `https://jsonplaceholder.typicode.com/todos/${id}`;
+    function loadTasks(  ) {
+      let url = `https://jsonplaceholder.typicode.com/todos/`;
       fetch( url )
               .then( response  =>{
                   return response.json();
@@ -18,17 +18,25 @@
               console.log( "Fetch Error", error.message);
            })
     }
-    function createTableOutput( data ){
+
+    function createTableOutput(data) {
       let tBody = document.getElementById("tBody");
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-          <td> ${data.userId} </td>
-          <td> ${data.id} </td>
-          <td> ${data.title} </td>
-          <td> ${data.completed} </td>
+
+      for (let i = 0; i < data.length; i++) {
+        const newRow = document.createElement('tr');
+        let row = data[i];
+        if ( row.completed) {
+          newRow.innerHTML = `
+          <td> ${row.userId} </td>
+          <td> ${row.id} </td>
+          <td> ${row.title} </td>
+          <td> ${row.completed} </td>
       `
-      tBody.appendChild( newRow);
-      console.log( "it is done")
+          tBody.appendChild(newRow);
+
+        }
+      }
+      console.log("it is done")
     }
 
   </script>
@@ -43,9 +51,7 @@
     </tbody>
 
   </table>
-  <button type="button" onclick="loadTasks(23)"> Load id 23 </button>
-  <button type="button" onclick="loadTasks(45)"> Load id 45 </button>
-  <button type="button" onclick="loadTasks(75)"> Load id 75</button>
-  <button type="button" onclick="loadTasks(1)"> Load id 1</button>
+  <button type="button" onclick="loadTasks()"> Load All Tasks </button>
+
 </body>
 </html>

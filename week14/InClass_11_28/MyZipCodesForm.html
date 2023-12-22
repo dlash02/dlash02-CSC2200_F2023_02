@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List from Fetch</title>
+  <link href="css/tableStyles.css" rel="stylesheet" />
+  <script>
+    function getZipInfo(  ) {
+      let zip = document.getElementById("zip").value;
+      console.log( "flZIp:" + zip);
+      let url = `http://api.zippopotam.us/US/${zip}`;
+      console.log( `url=${url}`);
+      console.log("-------")
+      fetch( url )
+              .then( response  =>{
+                  return response.json();
+              }).then( data => {
+                // console.log("Fl0->")
+                // console.log( data);
+                showZipInfo( data );
+            }).catch( error => {
+              console.log( "Fetch Error", error.message);
+             let results = document.getElementById("results");
+              results.innerHTML = `Zip Code ${zip} not found`;
+           })
+    }
+
+    function showZipInfo(data) {
+      let results = document.getElementById("results");
+      let oStr = ";"
+      if ( data === null ){
+        oStr = "No Data found";
+      } else {
+        let cAbv = data['country abbreviation'];
+        let place = data.places[0]['place name'];
+        let state = data.places[0].state;
+        document.getElementById("state").setAttribute('value', state);
+        document.getElementById("city").setAttribute('value', place);
+        oStr = ` country:${cAbv} place:${place} state:${state}`;
+      }
+      results.innerHTML = oStr;
+    }
+
+  </script>
+</head>
+<body>
+  Zip: <input type="number" id="zip" oninput="getZipInfo()">
+  City: <input type="text" id="city">
+  State: <input type="text" id="state">
+  <span id="results"> </span>
+</body>
+</html>

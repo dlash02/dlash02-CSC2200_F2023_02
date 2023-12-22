@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "id": 6,
+      "title": "Eat a peanut",
+      "completed": "true"
+    },
+    {
+      "id": 7,
+      "title": "Eat a fig",
+      "completed": "true"
+    },
+    {
+      "id": 8,
+      "title": "Go to bed",
+      "completed": "true"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List from Fetch</title>
+  <link href="css/tableStyles.css" rel="stylesheet" />
+  <script>
+    function loadTasks() {
+      let url = "https://jsonplaceholder.typicode.com/todos";
+      fetch( url )
+              .then( response  =>{
+                if ( !response.ok ){
+                  throw new Error(`Http error! Status:${resonse.status}`)
+                }
+                  return response.json();
+              }).then( data => {
+                console.log("Fl0->")
+                console.log( data);
+                populateTable( data );
+            }).catch( error => {
+              console.log( `Fetch Error:${error.message}`);
+              document.getElementById("error").innerHTML = `Fetch Error:${error.message}`;
+           })
+    }
+    function populateTable( data ){
+      const tBody = document.getElementById("tBody");
+
+      for( let i=0; i<data.length; i++ ) {
+        const newRow = document.createElement("tr");
+        newRow.innerHTML = `
+        <td> ${data[i].userId}</td>
+        <td> ${data[i].id}</td>
+        <td> ${data[i].title}</td>
+        <td> ${data[i].completed}</td>`
+        tBody.appendChild(newRow);
+      }
+    }
+  </script>
+</head>
+<body>
+  <table id="data-table">
+    <th> User Id </th>
+    <th> Task Id </th>
+    <th> Task Title </th>
+    <th> Completed </th>
+    <tbody id="tBody">
+    </tbody>
+  </table>
+  <button type="button" onclick="loadTasks()"> Load </button>
+   <div id="error"></div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/promiseMain.css" rel="stylesheet" />
+    <link href="css/tableStyles.css" rel="stylesheet" />
+  <style>
+    .navbar-custom {
+      background-color: #98bf21;
+      height: 120px;
+    }
+    .nav-link {
+      color:blue !important
+    }
+  </style>
+  <script>
+    function getZipInfo() {
+      let base = "https://api.zippopotam.us/us/";
+      let zip = document.getElementById("zip").value;
+      let URL = base +  zip;
+      // console.log( "url=" + URL);
+      console.log("Loading URL=" +URL );
+      fetch(URL)
+               .then( res => res.json())
+              .then(  function (data) {
+                  console.log( "Data="); console.log(data);
+                if ( data.places  === undefined ){
+                    oStr = "<span style=color:red>No Data found for zip:" + zip + "</span>";
+                } else {
+                    console.log( "PPP0->", data.places[0] );
+                    let p = data.places[0];
+                    console.log("P=", p );
+                    console.log("state=", p.state );
+                    console.log("city=", p['place name'] );
+                    document.getElementById("State").setAttribute('value', p.state );
+                    document.getElementById("city").setAttribute('value', p['place name'] );
+                    oStr = `City:${p['place name']} State:${p.state}`;
+                }
+                document.getElementById("results").innerHTML =  oStr;
+                console.log(data);
+              })
+              .catch(function (err) {
+                let oStr = `Something went wrong! Err:${err}`;
+                  document.getElementById("results").innerHTML =  oStr;
+              });
+    }
+  </script>
+</head>
+<body>
+<div id="mainContainer">
+<header>
+    Nav Area
+</header>
+<div class="mainLeft">
+ <h2> Zip Coder </h2>
+</div>
+<div class="mainRight">
+        <h4> Enter Zip Code </h4>
+        <form>
+         Zip:  <input type="number" id="zip" min=10000 max=99999 class="form-control" oninput="getZipInfo()"/>
+        <br /> City:  <input type="text" id="city" min=10000 max=99999 class="form-control"/>
+        <br /> State:  <input type="text" id="State" min=10000 max=99999 class="form-control"/>
+        </form>
+           <span id="results"> results here</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

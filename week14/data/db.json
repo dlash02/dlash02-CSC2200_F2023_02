@@ -1,0 +1,43 @@
+{
+  "parts": [
+    {
+      "id": "IRON001",
+      "partName": "Iron Man Suit",
+      "warehouseName": "Stark Industries Warehouse",
+      "quantity": 10,
+      "manufacturer": "Stark Industries",
+      "location": "Armory Section",
+      "suppliers": [
+        "Stark Industries",
+        "Advanced Tech Suppliers"
+      ],
+      "lastOrdered": "2023-01-15"
+    },
+    {
+      "id": "CAP002",
+      "partName": "Captain America Shield",
+      "warehouseName": "Avengers Tower Warehouse",
+      "quantity": 15,
+      "manufacturer": "Stark Industries",
+      "location": "Superhero Gear Section",
+      "suppliers": [
+        "Stark Industries",
+        "Wakanda Suppliers"
+      ],
+      "lastOrdered": "2023-02-20"
+    },
+    {
+      "id": "THOR003",
+      "partName": "Thor's Hammer (Mjolnir)",
+      "warehouseName": "Asgardian Armory",
+      "quantity": 20,
+      "manufacturer": "Asgardian Forges",
+      "location": "Royal Weapons Vault",
+      "suppliers": [
+        "Asgardian Forges",
+        "Dwarven Smiths"
+      ],
+      "lastOrdered": "2022-12-10"
+    }
+  ]
+}
